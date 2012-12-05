@@ -10,6 +10,6 @@ Man benötigt:
 - pygame
 - Hörspiele als mp3 wobei jede Folge in einem eigenen Ordern zusammen mit einem cover.jpg file liegen sollte.
 
-
+Gemacht für die drei Fragezeichen, funktioniert aber auch mit TKKG, Offenbarung 23 etc.
 
 
