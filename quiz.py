@@ -9,7 +9,6 @@ import random
 
 
 fullscreen = False
-episode_path = '/path/to/episodes'
 
 
 
@@ -131,7 +130,7 @@ class Scoreboard:
 # The main quiz, handling events and drawing of the interface
 class Quiz:
 
-  def __init__(self, user1, user2):
+  def __init__(self, user1, user2, episode_path):
     random.seed()
     self.running = True
     self.tasks = TaskGen(episode_path)
@@ -153,8 +152,8 @@ class Quiz:
     self.case2 = pygame.image.load("images/case.png").convert_alpha()
     self.case3 = pygame.image.load("images/case.png").convert_alpha()
     self.active = pygame.image.load("images/guess1.png").convert_alpha()
-    self.font = pygame.font.SysFont("Ubuntu", 25)
-    self.fontTimer = pygame.font.SysFont("Ubuntu", 85)
+    self.font = pygame.font.Font("Ubuntu.ttf", 25)
+    self.fontTimer = pygame.font.Font("Ubuntu.ttf", 85)
     self.name1Label = self.font.render(self.score_board.user1, 1, (255,255,255))
     self.score1Label = self.font.render("0", 1, (255,255,255))
     self.name2Label = self.font.render(self.score_board.user2, 1, (255,255,255))
@@ -378,10 +377,10 @@ class Quiz:
 
 
 if __name__ == "__main__" :
-  if len(sys.argv) != 3:
-    print "Usage: quiz.py user1name user2name"
+  if len(sys.argv) != 4:
+    print "Usage: quiz.py user1name user2name path/to/episodes"
     sys.exit(0)
-  theApp = Quiz(sys.argv[1], sys.argv[2])
+  theApp = Quiz(sys.argv[1], sys.argv[2], sys.argv[3])
   theApp.execute()
 
 
