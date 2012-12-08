@@ -4,7 +4,7 @@ import pygame.movie
 import os
 import sys
 import random
-
+import eyeD3
 
 
 
@@ -34,7 +34,13 @@ class Episode:
 
   # Return a random media file
   def getMedia(self):
-    return random.choice(self.mediafiles)
+    media = random.choice(self.mediafiles)
+    header = eyeD3.Mp3AudioFile(media)
+    duration = header.getPlayTime()
+    startpos = 0
+    if duration > 240:
+      startpos = random.randint(120, duration - 120)
+    return (media, startpos)
 
 
 
@@ -177,9 +183,9 @@ class Quiz:
 
     target = random.choice([0,1,2])
     self.answer = target
-    mediafile = episodes[target].getMedia()
+    mediafile, startpos = episodes[target].getMedia()
     pygame.mixer.music.load(mediafile)
-    pygame.mixer.music.play(-1, random.randint(100, 900))
+    pygame.mixer.music.play(-1, startpos)
     self.taskTimer.start()
 
 
